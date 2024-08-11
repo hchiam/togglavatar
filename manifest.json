@@ -1,20 +1,23 @@
 {
-  "description": "this is a template - change this description",
-  "manifest_version": 2,
-  "name": "LearningFirefoxExtension",
-  "version": "1.0.0",
-  "homepage_url": "https://github.com/hchiam/learning-firefox-extension",
-  "icons": {
-    "48": "example-icon.png"
+  "name": "togglavatar",
+  "version": "0.0.0",
+  "description": "Use microphone volume to toggle an avatar in your browser.",
+  "homepage_url": "https://github.com/hchiam/togglavatar",
+  "permissions": ["storage", "unlimitedStorage"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "48": "icon.png"
+    }
   },
   "content_scripts": [
     {
       "matches": ["*://*/*"],
-      "js": ["brain.js"]
+      "js": [ "shared.js", "page.js"]
     }
   ],
-  "permissions": [
-    "storage",
-    "<all_urls>"
-  ]
+  "icons": {
+    "48": "icon.png"
+  },
+  "manifest_version": 3
 }
