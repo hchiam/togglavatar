@@ -4,9 +4,13 @@
 
 ![icon](icon.png)
 
+Use microphone volume to toggle an avatar in your browser.
+
 Just one of the things I'm learning/building. <https://github.com/hchiam/learning>
 
 </div>
+
+This browser add-on/extension automatically shows an avatar even if you refresh the page or navigate, which can use volume to toggle the styling of the avatar that is displayed.
 
 Notes and templates:
 - [learning-firefox-extension](https://github.com/hchiam/learning-firefox-extension) (e.g.: about:debugging and Extension ID = GUID for browser_specific_settings.gecko.id in manifest.json)
