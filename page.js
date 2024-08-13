@@ -32,6 +32,10 @@ async function renderAvatar(customHTML) {
     "beforeend",
     customHTML || defaultAvatarHTML
   );
+  const avatarContainer = document.querySelector("#" + togglavatar_containerID);
+  avatarContainer.style.maxWidth = "25dvw";
+  avatarContainer.style.maxHeight = "25dvw";
+  avatarContainer.style.overflow = "hidden";
 }
 
 /** based off of https://jameshfisher.com/2021/01/18/measuring-audio-volume-in-javascript/ */
