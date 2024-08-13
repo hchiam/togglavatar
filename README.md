@@ -6,7 +6,11 @@
 
 Use microphone volume to toggle an avatar in your browser.
 
-Just one of the things I'm learning/building. <https://github.com/hchiam/learning>
+Just one of the things I'm learning/building. https://github.com/hchiam/learning
+
+<a href="https://www.youtube.com/watch?v=PZaKMlUUS_E">
+    <img src="demo.png" alt="demo https://www.youtube.com/watch?v=PZaKMlUUS_E" height="200">
+</a>
 
 </div>
 

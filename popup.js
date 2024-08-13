@@ -17,7 +17,7 @@ function init(data) {
       chrome.storage.local.set({ code: code }, () => {});
     } else {
       $("#code").value = generateDefaultAvatarHTML(
-        `  <p>Custom HTML here.</p>`
+        `  <!-- customize id="_togglavatar_lo" and id="_togglavatar_hi" here -->`
       );
       chrome.storage.local.set({ code: $("#code").value }, () => {});
     }
