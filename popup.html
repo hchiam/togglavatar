@@ -17,6 +17,13 @@
         height: 100%;
         padding: 1rem;
       }
+      label:has(#threshold) {
+        display: flex;
+        align-items: center;
+      }
+      #threshold {
+        margin-inline: 0.25rem;
+      }
       #code {
         width: 100%;
         height: 80%;
@@ -36,6 +43,19 @@
           >https://shapecatcher.com/</a
         >
       </p>
+      <br />
+      <p id="test"></p>
+      <label
+        >Volume threshold:&puncsp;<span id="thresholdDisplay">0.01</span
+        >&puncsp;<input
+          id="threshold"
+          value="0.01"
+          type="range"
+          min="0.01"
+          max="0.99"
+          step="0.01"
+        />
+      </label>
       <br />
       <textarea id="code" placeholder="code" contenteditable></textarea>
     </main>

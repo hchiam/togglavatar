@@ -1,24 +1,30 @@
-chrome.storage.local.get("code", async function getData(data) {
-  await renderAvatar(data.code);
-  const avatar = document.querySelector("#" + togglavatar_containerID);
+chrome.storage.local.get("threshold", function getData(data) {
+  const threshold = data.threshold;
 
-  if (!avatar) return;
+  chrome.storage.local.get("code", async function getData(data) {
+    await renderAvatar(data.code);
+    const avatar = document.querySelector("#" + togglavatar_containerID);
 
-  const lo = avatar.querySelector("#" + togglavatar_loID);
-  const hi = avatar.querySelector("#" + togglavatar_hiID);
+    if (!avatar) return;
 
-  onMicVolume((volume) => {
-    const isHi = volume > 0.01;
-    if (isHi) {
-      lo?.classList.remove("show");
-      hi?.classList.add("show");
-    } else {
-      lo?.classList.add("show");
-      hi?.classList.remove("show");
-    }
+    const lo = avatar.querySelector("#" + togglavatar_loID);
+    const hi = avatar.querySelector("#" + togglavatar_hiID);
+
+    onMicVolume((volume) => {
+      const isHi = volume > (Number(threshold) || 0.01);
+      if (isHi) {
+        lo?.classList.remove("show");
+        hi?.classList.add("show");
+      } else {
+        lo?.classList.add("show");
+        hi?.classList.remove("show");
+      }
+    });
+
+    moveAvatarOutOfTheWay(
+      document.querySelector("#" + togglavatar_containerID)
+    );
   });
-
-  moveAvatarOutOfTheWay(document.querySelector("#" + togglavatar_containerID));
 });
 
 async function renderAvatar(customHTML) {
