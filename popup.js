@@ -25,19 +25,36 @@ function init(data) {
   });
 
   $("#code").addEventListener("keyup", () => {
-    const code = $("#code").value;
-    if (!code) {
-      $("#code").value = defaultAvatarHTML;
-      chrome.storage.local.set({ code: $("#code").value }, () => {});
-    } else if (codeHasRequiredID(code)) {
-      chrome.storage.local.set({ code: code }, () => {});
+    updateCode();
+  });
+
+  $("#code").addEventListener("paste", (event) => {
+    const yes = confirm(
+      "Reminder: only paste code you can trust! \n\nContinue?"
+    );
+    if (yes) {
+      setTimeout(() => {
+        updateCode();
+      }, 100);
     } else {
-      $("#code").value = generateDefaultAvatarHTML(
-        `  <!-- customize id="_togglavatar_lo" and id="_togglavatar_hi" here -->`
-      );
-      chrome.storage.local.set({ code: $("#code").value }, () => {});
+      event.preventDefault();
     }
   });
+}
+
+function updateCode() {
+  const code = $("#code").value;
+  if (!code) {
+    $("#code").value = defaultAvatarHTML;
+    chrome.storage.local.set({ code: $("#code").value }, () => {});
+  } else if (codeHasRequiredID(code)) {
+    chrome.storage.local.set({ code: code }, () => {});
+  } else {
+    $("#code").value = generateDefaultAvatarHTML(
+      `  <!-- customize id="_togglavatar_lo" and id="_togglavatar_hi" here -->`
+    );
+    chrome.storage.local.set({ code: $("#code").value }, () => {});
+  }
 }
 
 function codeHasRequiredID(code) {
