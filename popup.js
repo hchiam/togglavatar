@@ -6,7 +6,7 @@ chrome.storage.local.get("code", async function getData(data) {
 });
 
 chrome.storage.local.get("threshold", async function getData(data) {
-  $("#threshold").value = Number(data.threshold);
+  $("#threshold").value = Number(data.threshold) || 0.01;
   $("#thresholdDisplay").innerText = $("#threshold").value;
 });
 
