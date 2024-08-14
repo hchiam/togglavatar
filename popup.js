@@ -11,7 +11,8 @@ chrome.storage.local.get("threshold", async function getData(data) {
 });
 
 function init(data) {
-  $("#code").value = data?.code || defaultAvatarHTML;
+  const code = $("#code");
+  code.value = data?.code || defaultAvatarHTML;
 
   $("#threshold").addEventListener("change", () => {
     const threshold = Number($("#threshold").value || 0.01);
@@ -24,11 +25,11 @@ function init(data) {
     chrome.storage.local.set({ threshold: threshold }, () => {});
   });
 
-  $("#code").addEventListener("keyup", () => {
+  code.addEventListener("keyup", () => {
     updateCode();
   });
 
-  $("#code").addEventListener("paste", (event) => {
+  code.addEventListener("paste", (event) => {
     const yes = confirm(
       "Reminder: only paste code you can trust! \n\nAre you sure you want to continue?"
     );
@@ -39,6 +40,18 @@ function init(data) {
     } else {
       event.preventDefault();
     }
+  });
+
+  const preHighlight = $("#preHighlight");
+  // highlight on load:
+  highlightHTMLAndText(code, preHighlight);
+  // oninput is on immediate change:
+  code.addEventListener("input", () => {
+    highlightHTMLAndText(code, preHighlight);
+  });
+  // onkeyup to handle even arrow keys:
+  code.addEventListener("keyup", () => {
+    highlightHTMLAndText(code, preHighlight);
   });
 }
 
@@ -85,4 +98,21 @@ function simpleSanitize(code) {
     .replace(/\brequire\b/gi, "")
     .replace(/\burl\b/gi, "")
     .replace(/script\s*:/gi, "");
+}
+
+function highlightHTMLAndText(textarea, preHighlight) {
+  textarea.style.height = textarea.scrollHeight + "px";
+  preHighlight.style.height = textarea.scrollHeight + "px";
+  textarea.style.width = textarea.scrollWidth + "px";
+  preHighlight.style.width = textarea.scrollWidth + "px";
+
+  const code = textarea.value;
+  preHighlight.innerHTML = code
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/(&lt;.+?&gt;)/g, '<span class="tagHighlight">$1</span>')
+    .replace(
+      /(?<!class="tagHighlight")>([^<]+)</g,
+      '><span class="textHighlight">$1</span><'
+    );
 }

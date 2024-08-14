@@ -11,6 +11,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        --wrapSetting: nowrap;
       }
       main {
         width: 100%;
@@ -24,11 +25,44 @@
       #threshold {
         margin-inline: 0.25rem;
       }
-      #code {
+      #codeContainer {
         width: 100%;
+        height: 100%;
+        position: relative;
+      }
+      #code,
+      #preHighlight {
+        text-wrap: var(--wrapSetting);
+        width: 100%; /* related to wrap setting for highlighting */
+        margin: 0 0 1rem;
+        padding: 1rem;
+        border: 1px solid white;
+      }
+      #code {
         height: 80%;
         resize: none;
         white-space: pre;
+        overflow: hidden; /* we'll update size oninput */
+        background: white;
+        color: black;
+      }
+      #preHighlight {
+        position: absolute;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        background: transparent;
+        color: transparent;
+      }
+      .tagHighlight {
+        background: #ff000030;
+        color: transparent;
+        border-radius: 0.5em;
+      }
+      .textHighlight {
+        background: #0000ff30;
+        color: transparent;
+        border-radius: 0.5em;
       }
     </style>
   </head>
@@ -56,7 +90,10 @@
         />
       </label>
       <br />
-      <textarea id="code" placeholder="code" contenteditable></textarea>
+      <div id="codeContainer">
+        <textarea id="code" placeholder="code" contenteditable></textarea>
+        <pre id="preHighlight" inert></pre>
+      </div>
     </main>
     <script src="shared.js"></script>
     <script src="popup.js"></script>
