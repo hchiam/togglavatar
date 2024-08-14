@@ -2,11 +2,13 @@
 
 # togglavatar
 
-![icon](icon.png)
+<img src="talking.gif" alt="talking" height="100">
 
 Use microphone volume to toggle an avatar in your browser.
 
 [Chrome extension](https://chromewebstore.google.com/detail/togglavatar/cajmjacgimaodainnbocljkhkoinjgcb) / [Firefox add-on](https://addons.mozilla.org/firefox/addon/togglavatar)
+
+![icon](icon.png)
 
 <a href="https://www.youtube.com/watch?v=PZaKMlUUS_E">
     <img src="demo.png" alt="demo https://www.youtube.com/watch?v=PZaKMlUUS_E" height="200">
