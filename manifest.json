@@ -1,6 +1,6 @@
 {
   "name": "togglavatar",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Use microphone volume to toggle an avatar in your browser.",
   "homepage_url": "https://github.com/hchiam/togglavatar",
   "permissions": ["storage", "unlimitedStorage"],
