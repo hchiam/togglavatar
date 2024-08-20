@@ -101,6 +101,13 @@ function simpleSanitize(code) {
             [])
         );
       }
+      if (tagName === "polygon") {
+        allowedAttributes.push(
+          ...(attributes.match(
+            /\s*(fill|stroke|points)\s*=\s*(['"])[^'"]*\2/g
+          ) || [])
+        );
+      }
       return `<${tagName}${allowedAttributes.join(" ")}>`;
     }) // remove tags like script/iframe:
     .replace(
