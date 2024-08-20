@@ -84,10 +84,30 @@ function simpleSanitize(code) {
     }) // remove new lines within tags:
     .replace(/<\s*\/?\s*([a-zA-Z][a-zA-Z0-9]*)\s*>/g, (match) => {
       return match.replace(/\s+/g, "").replace(/>/g, ">");
-    }) // only allow id/class/style as tag attributes:
+    }) // only allow id/class/style as tag attributes, with some exceptions for svg and path:
     .replace(/<(\w+)([^>]*)>/g, (match, tagName, attributes) => {
       const allowedAttributes =
         attributes.match(/\s*(id|class|style)\s*=\s*(['"])[^'"]*\2/g) || [];
+      if (tagName === "svg") {
+        allowedAttributes.push(
+          ...(attributes.match(
+            /\s*(width|height|xmlns)\s*=\s*(['"])[^'"]*\2/g
+          ) || [])
+        );
+      }
+      if (tagName === "path") {
+        allowedAttributes.push(
+          ...(attributes.match(/\s*(d|fill|transform)\s*=\s*(['"])[^'"]*\2/g) ||
+            [])
+        );
+      }
+      if (tagName === "polygon") {
+        allowedAttributes.push(
+          ...(attributes.match(
+            /\s*(fill|stroke|points)\s*=\s*(['"])[^'"]*\2/g
+          ) || [])
+        );
+      }
       return `<${tagName}${allowedAttributes.join(" ")}>`;
     }) // remove tags like script/iframe:
     .replace(
