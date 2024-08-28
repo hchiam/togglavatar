@@ -2,17 +2,17 @@
 
 # togglavatar
 
-<img src="talking.gif" alt="talking" height="100">
-
-Use microphone volume to toggle an avatar in your browser.
-
-[Chrome extension](https://chromewebstore.google.com/detail/togglavatar/cajmjacgimaodainnbocljkhkoinjgcb) / [Firefox add-on](https://addons.mozilla.org/firefox/addon/togglavatar)
-
-![icon](icon.png)
+Animate a "talking head" avatar in your browser (controlled by microphone volume). For example, for recording explainer videos like this: https://www.youtube.com/watch?v=PZaKMlUUS_E
 
 <a href="https://www.youtube.com/watch?v=PZaKMlUUS_E">
     <img src="demo.png" alt="demo https://www.youtube.com/watch?v=PZaKMlUUS_E" height="200">
 </a>
+
+<img src="talking.gif" alt="talking" height="100">
+
+[Chrome extension](https://chromewebstore.google.com/detail/togglavatar/cajmjacgimaodainnbocljkhkoinjgcb) / [Firefox add-on](https://addons.mozilla.org/firefox/addon/togglavatar)
+
+![icon](icon.png)
 
 Just one of the things I'm learning/building. https://github.com/hchiam/learning
 
