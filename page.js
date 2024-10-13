@@ -24,6 +24,15 @@ chrome.storage.local.get("threshold", function getData(data) {
     moveAvatarOutOfTheWay(
       document.querySelector("#" + togglavatar_containerID)
     );
+
+    const pollInterval = 100;
+    updateContainerIfFullScreen(
+      (container) => {
+        if (!container.contains(avatar)) container.appendChild(avatar);
+      },
+      pollInterval,
+      document.documentElement
+    );
   });
 });
 
@@ -80,4 +89,19 @@ function moveAvatarOutOfTheWay(avatarContainer) {
       avatarContainer.style.right = window.innerWidth - w - 2 * offset + "px";
     }
   });
+}
+
+function updateContainerIfFullScreen(
+  callback,
+  pollInterval = 1000,
+  fallbackElement = document.body
+) {
+  return setInterval(() => {
+    const fullscreenElement = document.querySelector(":fullscreen");
+    if (fullscreenElement) {
+      callback(fullscreenElement);
+    } else {
+      callback(fallbackElement);
+    }
+  }, pollInterval);
 }
